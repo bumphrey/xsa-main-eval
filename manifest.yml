@@ -1,0 +1,6 @@
+---
+applications:
+- name: xsa-main-eval
+  memory: 128M
+  path: ./target/xsa-main-eval.jar
+  instances: 1
