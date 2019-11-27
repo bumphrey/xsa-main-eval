@@ -30,7 +30,8 @@ public class Consumer extends Messaging implements Runnable{
 		//close consumer, session and connection 
 		consumer.close(); 
 		session.close(); 
-		connection.close(); 				
+		connection.close(); 	
+		System.out.println("closed Consumer Connection!");
 	}
 
 	@Override

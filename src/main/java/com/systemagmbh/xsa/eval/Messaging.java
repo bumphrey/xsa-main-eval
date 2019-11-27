@@ -2,6 +2,7 @@ package com.systemagmbh.xsa.eval;
 
 import javax.jms.Connection;
 import javax.jms.Destination;
+import javax.jms.ExceptionListener;
 import javax.jms.JMSException;
 import javax.jms.Session;
 
@@ -11,7 +12,7 @@ import com.sap.xs.env.Credentials;
 import com.sap.xs.env.Service;
 import com.sap.xs.env.VcapServices;
 
-public class Messaging {
+public class Messaging implements ExceptionListener{
 	
 	protected VcapServices services;
 	protected Service      activeMQStorage;
@@ -40,7 +41,7 @@ public class Messaging {
 				 
 		// consider setting an exception listener to the connection, 
 		// so you could be notified in cases of connectivity problems
-		// connection.setExceptionListener(this); 
+		connection.setExceptionListener(this); 
 				 
 		//create jmx session 
 		session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -56,11 +57,17 @@ public class Messaging {
 		  credentials = activeMQStorage.getCredentials(); 
 		         user = credentials.getUser(); 
 		     password = credentials.getPassword(); 
-		    brokerUrl = "failover:(" + credentials.getUrl() + ")"; 
+		     //brokerUrl = "failover:(" + credentials.getUrl() + ")"; 
+		     brokerUrl = credentials.getUrl();
 		    
 		    System.out.println("user: "+user);
 		    System.out.println("password: "+password);
 		    System.out.println("brokerUrl: "+brokerUrl);
+	}
+
+	@Override
+	public void onException(JMSException ex) {
+		ex.printStackTrace();		
 	}
 	
 }

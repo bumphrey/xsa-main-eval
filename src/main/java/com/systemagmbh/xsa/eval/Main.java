@@ -16,9 +16,10 @@ public class Main {
 	public static void main(String args[]){
 		System.out.println("xsa-main-eval Started");
 		
-        startPublisher();    
-		startSubscriber();
-        
+		//startSubscriber();
+        //startPublisher();    
+		startQueueBrowser();  
+		
 		System.out.println("xsa-main-eval Main Ending");
 	}
 	
@@ -34,6 +35,13 @@ public class Main {
 		workerList.add(workerThread);
 		workerThread.start();		
 	}		
+	
+	public static void startQueueBrowser() {
+		Runnable queueBrowser = new QueueBrowserExample();
+		Thread workerThread = new Thread(queueBrowser);
+		workerList.add(workerThread);
+		workerThread.start();
+	}
 	
 	public static void startEchoServer() {
 		Runnable worker = new EchoServer();

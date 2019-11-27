@@ -1,10 +1,12 @@
 ---
 applications:
-- name: xsa-main-eval
+- name: xsa-jms-queue-browser
   no-route: true
   memory: 128M
   path: ./target/xsa-main-eval.jar
   instances: 1
   services:
-   - pk-messaging-service
-    
+   - messaging-service
+  env:      
+    JBP_CONFIG_JAVA_OPTS: '[from_environment: false, java_opts: "-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y"]'
+    RUNTIME_ENV: XSA    
