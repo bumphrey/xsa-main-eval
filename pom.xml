@@ -19,7 +19,7 @@
 	  <activemq-all.version>5.15.8</activemq-all.version>
 	  <qpid-jms-client.version>0.38.0</qpid-jms-client.version>
 	  <xs.env.version>1.6.9</xs.env.version>
-	  <jackson-databind.version>2.12.6.1</jackson-databind.version>
+	  <jackson-databind.version>2.14.0-rc1</jackson-databind.version>
 	  <guava.version>27.0-jre</guava.version>
 	</properties>
 	
